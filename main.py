@@ -26,7 +26,7 @@ for lang in langs:
     content = content + this_content
     print "Wiki",lang,"got"
 content = content + '| 0 }}</onlyinclude>'
-    print "Finish langs"
+print "Finish langs"
 site = wikipedia.getSite()
 print "Site Got"
 page = wikipedia.Page(site, u"karbar"Sefid_Par_BOT/test")
