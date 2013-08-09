@@ -3,7 +3,7 @@ Template = '| %(language)s = {{#switch:{{{2}}}\n  | NUMBEROFARTICLES | ARTICLES 
   
 from urllib import urlopen
 from xml.dom import minidom
-
+import wikipedia
 langs = ['en','fa','de','es']
 URL_template = 'http://%(s)s.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=xml'
 for lang in langs:
@@ -24,6 +24,12 @@ for lang in langs:
     
     this_content = Template % {'language' : lang , 'articles' : articles , 'images' : images , 'pages' : pages , 'users' : users , 'activeusers' : activeusers , 'admins' : admins , 'edits' : edits }
     content = content + this_content
-
+    print "Wiki",lang,"got"
 content = content + '| 0 }}</onlyinclude>'
-print content
+    print "Finish langs"
+site = wikipedia.getSite()
+print "Site Got"
+page = wikipedia.Page(site, u"karbar"Sefid_Par_BOT/test")
+print "Page Got"
+page.put(content,u"New test")
+print "Finish!"
