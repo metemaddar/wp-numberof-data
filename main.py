@@ -8,7 +8,10 @@ langs = ["en" , "nl" , "de" , "fr" , "sv" , "it" , "es" , "ru" , "pl" , "ja" , "
 bo" , "glk" , "rue" , "frr" , "bcl" , "min" , "nds-nl" , "fiu-vro" , "mrj" , "tk" , "ps" , "vls" , "xmf" , "gv" , "diq" , "or" , "kv" , "pag" , "km" , "zea" , "mhr" , "dv" , "nrm" , "csb" , "vep" , "vep" , "rm" , "koi" , "udm" , "ce" , "lad" , "lij" , "wuu" , "fur" , "sc" , "zh-classical" , "stq" , "ug" , "mt" , "ay" , "so" , "pi" , "hak" , "bh" , "ksh" , "nov" , "kw" , "ang" , "gn" , "pcd" , "nv" , "as" , "ext" , "frp" , "eml" , "gag" , "ace" , "szl" , "ie" , "ln" , "pfl" , "krc" , "xal" , "haw" , "pdc" , "rw" , "crh" , "to" , "dsb" , "lez" , "arc" , "kl" , "myv" , "kab" , "sn" , "bjn" , "pap" , "tpi" , "lbe" , "wo" , "mwl" , "jbo" , "mdf" , "kbd" , "cbk-zam" , "av" , "srn" , "lo" , "ty" , "kg" , "ab" , "tet" , "ltg" , "na" , "ig" , "bxr" , "nso" , "za" , "kaa" , "zu" , "chy" , "rmy" , "cu" , "tn" , "chr" , "roa-rup" , "cdo" , "bi" , "got" , "sm" , "mo" , "bm" , "iu" , "pih" , "pnt" , "ss" , "sd" , "ki" , "ee" , "ha" , "om" , "fj" , "ti" , "ts" , "ks" , "ve" , "sg" , "rn" , "st" , "cr" , "dz" , "ak" , "tum" 
 , "ik" , "ff" , "lg" , "ny" , "ch" , "tw" , "xh" , "ng" , "ii" , "cho" , "mh" , "aa" , "kj" , "ho" , "mus" , "kr" , "hz"]
 URL_template = 'http://%(s)s.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=xml'
+x = 0
+y = len(langs)
 for lang in langs:
+    x = x + 1
     url = URL_template % {'s':lang}
     stat_string = urlopen(url).read()
     stat_xml = minidom.parseString(stat_string)
@@ -26,7 +29,7 @@ for lang in langs:
     
     this_content = Template % {'language' : lang , 'articles' : articles , 'images' : images , 'pages' : pages , 'users' : users , 'activeusers' : activeusers , 'admins' : admins , 'edits' : edits }
     content = content + this_content
-    print "Wiki",lang,"got"
+    print x, "of", y,": Wiki",lang,"got"
 content = content + '| 0 }}</onlyinclude>'
 print "Finish langs"
 site = wikipedia.getSite()
